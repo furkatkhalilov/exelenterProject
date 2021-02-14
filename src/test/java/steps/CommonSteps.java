@@ -46,7 +46,7 @@ public class CommonSteps extends BaseClass {
 
         for (int i = 0; i < allElements.size(); i++) {
             switch (page) {
-                case "loginPage":
+                case "LoginPage":
                     loginPage.findElementAndClickFunction(allElements.get(i));
                     break;
                 case "UserMenu":

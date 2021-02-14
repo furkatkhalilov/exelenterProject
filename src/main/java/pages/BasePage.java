@@ -98,7 +98,12 @@ public class BasePage {
         StringSelection stringSelection = new StringSelection(pathToFile);
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection,null);
 
+            /**
+             * this and other waiting methods can be replaced with already created methods above: waitUntilClickable
+             * or waitUntilVisible
+             */
         waiting(500);
+
         robot.keyPress(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_V);
         robot.keyRelease(KeyEvent.VK_CONTROL);
@@ -119,7 +124,8 @@ public class BasePage {
         int randomIndex = random.nextInt(selectionSize);
         System.out.println("randomIndex = " + randomIndex);
         select.selectByIndex(randomIndex);
-        waiting(2000);
+
+        waiting(2000); // this can be replaced with waitUntilVisible or waitUntilClickable method created in this class
     }
 
     public void selectDropDownByName(String name, WebElement element) {

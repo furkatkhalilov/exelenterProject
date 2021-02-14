@@ -2,7 +2,7 @@ Feature: Login to staging.asian-promotions.com
 
   Background:
     Given User navigates to the asian-promotions website homepage
-    When User sends the keys in "loginPage"
+    When User sends the keys in "LoginPage"
       | Username | furkat.khalilov@gmail.com |
       | Password | 580202442                 |
     And User clicks on "loginPage"
