@@ -13,7 +13,11 @@ import utils.BaseClass;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+import java.util.HashMap;
+>>>>>>> master
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -29,12 +33,22 @@ public class BasePage {
         wait = new WebDriverWait(driver,15);
     }
 
+<<<<<<< HEAD
 
 
     public void findElementAndSendKeysFunction(String element, String text) {}
 
 
     public void findElementAndClickFunction(String element) {}
+=======
+    // Getting webElement from the Map. To be used in the PageObjectClasses
+    public WebElement getWebElement(HashMap<String, WebElement> map, String mapKey){
+        if(!map.containsKey(mapKey)){
+            throw new RuntimeException("Element not found " + mapKey);
+        }
+        return map.get(mapKey);
+    }
+>>>>>>> master
 
     //    Click on element method
     protected void clickFunction(WebElement element){
@@ -76,6 +90,7 @@ public class BasePage {
         Assert.assertTrue(element.getText().contains(myText));
     }
 
+    // Thread sleep waiter method
     public void waiting(int howLong){
         try {
             Thread.sleep(howLong);
@@ -84,6 +99,7 @@ public class BasePage {
         }
     }
 
+    // Scroll to Webelement method
     protected void scrollToElement(WebElement elementToScroll){
 //        JavascriptExecutor js = ((JavascriptExecutor) driver);
 //        js.executeScript("arguments[0].scrollIntoView();", elementToScroll);
@@ -93,22 +109,22 @@ public class BasePage {
 
     }
 
+    //Hover over and click method
     protected void moveToElementAndClick(WebElement element){
         Actions actions = new Actions(BaseClass.setUp());
         scrollToElement(element);
         actions.moveToElement(element).click().perform();
     }
 
+    // Uploading file method using Robot class
     public void uploadFile(String pathToFile){
 
         Robot robot = null;
         try {
             robot = new Robot();
 
-
         StringSelection stringSelection = new StringSelection(pathToFile);
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection,null);
-
         waiting(500);
         robot.keyPress(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_V);
@@ -122,7 +138,8 @@ public class BasePage {
         }
     }
 
-    public void selectDropDownRandomByIndex(WebElement element) {
+
+    public void selectDropDown(WebElement element) {
         Select select = new Select(element);
         int selectionSize = select.getOptions().size();
         System.out.println("selectionSize = " + selectionSize);
@@ -133,16 +150,11 @@ public class BasePage {
         waiting(2000);
     }
 
-    public void selectDropDownByName(String name, WebElement element) {
+    public void selectDropDown(String name, WebElement element) {
         waitUntilVisible(element);
         Select select = new Select(element);
         select.selectByVisibleText(name);
-//        List<WebElement> allDropDownElements = select.getAllSelectedOptions();
-//        for (WebElement webElement : allDropDownElements) {
-//            if (name.equals(webElement.getText())) {
-//                clickFunction(webElement);
-//            }
-//        }
+
     }
 
 
